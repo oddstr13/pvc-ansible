@@ -33,7 +33,7 @@
   command: ceph-authtool --create-keyring /tmp/ceph-bootstrap/ceph.mon.keyring --gen-key -n mon. --cap mon 'allow *'
 
 - name: create client admin keyring
-  command: ceph-authtool --create-keyring /tmp/ceph-bootstrap/ceph.client.admin.keyring --gen-key -n client.admin --set-uid=0 --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
+  command: ceph-authtool --create-keyring /tmp/ceph-bootstrap/ceph.client.admin.keyring --gen-key -n client.admin --cap mon 'allow *' --cap osd 'allow *' --cap mds 'allow *' --cap mgr 'allow *'
 
 - name: add client admin keyring to mon keyring
   command: ceph-authtool /tmp/ceph-bootstrap/ceph.mon.keyring --import-keyring /tmp/ceph-bootstrap/ceph.client.admin.keyring
@@ -66,8 +66,8 @@
     - "auth client required = cephx"
     - "mon allow pool delete = 1"
     - "osd journal size = 2"
-    - "osd pool default size = 3"
-    - "osd pool default min size = 2"
+    - "osd pool default size = 1"
+    - "osd pool default min size = 1"
     - "osd pool default pg num = 512"
     - "osd pool default pgp num = 512"
     - "osd crush chooseleaf type = 1"
